@@ -7,11 +7,13 @@ using System.Web;
 
 namespace TutoringProject.Models.Session
 {
+    [Table("Session")]
     public class Session
     {
         [Key]
         public int Id { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime Time { get; set; }
         [Required]
         public string Subject { get; set; }

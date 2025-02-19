@@ -1,0 +1,33 @@
+@model TutoringProject.Models.Student.Student
+
+@{
+    ViewBag.Title = "Edit Student";
+}
+
+<h2>Edit Student</h2>
+
+@using (Html.BeginForm("Edit", "Student", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fname)
+        @Html.TextBoxFor(model => model.Fname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Fname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lname)
+        @Html.TextBoxFor(model => model.Lname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Lname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+
+<button type="submit" class="btn btn-primary">Save Changes</button>
+}

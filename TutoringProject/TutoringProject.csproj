@@ -197,6 +197,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Tutor\Index.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Session\Index.cshtml" />
+    <Content Include="Views\Tutor\Create.cshtml" />
+    <Content Include="Views\Tutor\Edit.cshtml" />
+    <Content Include="Views\Tutor\Details.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Details.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Session\Edit.cshtml" />
+    <Content Include="Views\Session\Details.cshtml" />
+    <Content Include="Views\Session\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

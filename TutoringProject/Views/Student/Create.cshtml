@@ -1,0 +1,39 @@
+@model TutoringProject.Models.Student.Student
+
+@{
+    ViewBag.Title = "Create New Student";
+}
+
+<h2>Create New Student</h2>
+
+@using (Html.BeginForm("Create", "Student", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fname)
+        @Html.TextBoxFor(model => model.Fname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Fname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Lname)
+        @Html.TextBoxFor(model => model.Lname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Lname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Birthday)
+        @Html.TextBoxFor(model => model.Birthday, new { @class = "form-control", type= "date" })
+        @Html.ValidationMessageFor(model => model.Birthday)
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+}

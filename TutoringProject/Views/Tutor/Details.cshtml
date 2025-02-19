@@ -1,0 +1,52 @@
+@model TutoringProject.Models.Tutor.Tutor
+
+@{
+    ViewBag.Title = "Tutor Details";
+}
+
+<h2>Tutor Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Fname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fname)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lname)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Delivery)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Delivery)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+    </dl>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
