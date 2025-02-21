@@ -24,7 +24,7 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Email)
-        @Html.DropDownListFor(model => model.Email, new SelectList(ViewBag.Faculties, "Id", "Name"), "Select Faculty", new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Email)
     </div>
 
