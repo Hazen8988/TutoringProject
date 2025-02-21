@@ -16,8 +16,9 @@ namespace TutoringProject.Controllers
         public ActionResult Index()
         {
             using (var db = new SessionContext())
+            using (var dbStudent = new StudentContext())
             {
-                var sessions = db.Sessions.ToList();
+                var sessions = db.Sessions.Include(s => s.Student).ToList();
                 return View(sessions);
             }
         }
@@ -27,8 +28,16 @@ namespace TutoringProject.Controllers
             using (var db = new TutorContext()) 
             using (var dbStudent = new StudentContext())
             { 
-                ViewBag.Tutors = db.Tutors.ToList();
-                ViewBag.Students = dbStudent.Students.ToList();
+                ViewBag.Tutors = db.Tutors.ToList().Select(t => new
+                {
+                    Id = t.Id,
+                    FnameLname = t.Fname + " " + t.Lname
+                }).ToList();
+                ViewBag.Students = dbStudent.Students.ToList().Select(s => new
+                {
+                    Id = s.Id,
+                    FnameLname = s.Fname + " " + s.Lname
+                }).ToList();
             }
             return View();
         }
@@ -59,8 +68,16 @@ namespace TutoringProject.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.Tutors = tutordb.Tutors.ToList();
-                ViewBag.Students = studentdb.Students.ToList();
+                ViewBag.Tutors = tutordb.Tutors.ToList().Select(t => new
+                {
+                    Id = t.Id,
+                    FnameLname = t.Fname + " " + t.Lname
+                }).ToList();
+                ViewBag.Students = studentdb.Students.ToList().Select(s => new
+                {
+                    Id = s.Id,
+                    FnameLname = s.Fname + " " + s.Lname
+                }).ToList();
                 return View(session);
             }
         }
