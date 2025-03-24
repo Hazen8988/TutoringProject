@@ -1,0 +1,19 @@
+@model TutoringProject.Models.Student.Student
+
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Fname</td>
+    <td>@Model.Lname</td>
+    <td>@Model.Email</td>
+    <td>@Model.Birthday</td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
+        <span>
+            @using (Html.BeginForm("Delete", "Student", new { id = Model.Id }, FormMethod.Post))
+            {
+                <button type="submit" class="btn btn-link">Delete</button>
+            }
+        </span>
+    </td>
+</tr>
