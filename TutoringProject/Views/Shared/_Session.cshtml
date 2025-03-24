@@ -1,0 +1,18 @@
+﻿@model TutoringProject.Models.Session.Session
+
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Time</td>
+    <td>@Model.Subject</td>
+    <td>@Model.Student.Fname @Model.Student.Lname</td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
+        <span>
+            @using (Html.BeginForm("Delete", "Session", new { id = Model.Id }, FormMethod.Post))
+            {
+                <button type="submit" class="btn btn-link">Delete</button>
+            }
+        </span>
+    </td>
+</tr>

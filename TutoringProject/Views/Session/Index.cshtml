@@ -1,6 +1,4 @@
-﻿
-@model IEnumerable<TutoringProject.Models.Session.Session>
-
+﻿@model IEnumerable<TutoringProject.Models.Session.Session>
 
 @{
     ViewBag.Title = "Session List";
@@ -8,34 +6,20 @@
 
 <h2>Session List</h2>
 
-
 <p>@Html.ActionLink("Create New", "Create")</p>
+
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.First().Id)</th>
         <th>@Html.DisplayNameFor(model => model.First().Time)</th>
         <th>@Html.DisplayNameFor(model => model.First().Subject)</th>
         <th>@Html.DisplayNameFor(model => model.First().Student)</th>
-
         <th></th>
     </tr>
+
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.Id)</td>
-            <td>@Html.DisplayFor(modelItem => item.Time)</td>
-            <td>@Html.DisplayFor(modelItem => item.Subject)</td>
-            <td>@Html.DisplayFor(modelItem => item.Student.Fname) @Html.DisplayFor(modelItem => item.Student.Lname)</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                <span>
-                    @using (Html.BeginForm("Delete", "Session", new { id = item.Id }, FormMethod.Post))
-                    {
-                        <button type="submit" class="btn btn-link">Delete</button>
-                    }
-                </span>
-            </td>
-        </tr>
+        @Html.Partial("_Session", item)
     }
+
 </table>

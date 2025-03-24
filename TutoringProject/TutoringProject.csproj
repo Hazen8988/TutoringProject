@@ -209,6 +209,7 @@
     <Content Include="Views\Session\Edit.cshtml" />
     <Content Include="Views\Session\Details.cshtml" />
     <Content Include="Views\Session\Create.cshtml" />
+    <Content Include="Views\Shared\_Session.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
