@@ -363,3 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 App_Data/
+
+Content/
+
+Scripts/
