@@ -151,6 +151,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Image\LoginIcon.png" />
+    <Content Include="Content\Image\profile_icon.png" />
+    <Content Include="Content\Image\RegisterIcon.png" />
+    <Content Include="Content\Image\Session-Views.png" />
+    <Content Include="Content\Image\tutor-hero.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
