@@ -2,32 +2,40 @@
     ViewBag.Title = "Home Page";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<div class="row mx-auto"
+     style="max-width: 1140px; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;">
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+    <!-- Left Image Section -->
+    <div class="hero-img d-none d-sm-block col-md-6 col-12"
+         style="background-image: url('/Content/Images/tutor-hero.png'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 500px; flex: 1;">
     </div>
-</main>
+
+    <!-- Right Content Section -->
+    <div class="col-12 col-md-6 px-4" style="flex: 1;">
+        <h1 class="hero-header"
+            style="font-size: 2.5rem; font-weight: bold; color: #2874a7; margin-bottom: 20px;">
+            Build Academic Success with TutorConnect
+        </h1>
+        <div class="hero-subHeader"
+             style="font-size: 1.2rem; margin-bottom: 30px; color: #2874a7;">
+            Discover flexible tutoring sessions, skilled educators, and a smarter way to support your learning goals.
+        </div>
+
+        <!-- Buttons -->
+        <div class="row justify-content-center">
+            <a class="btn col-xl-6 col-10"
+               href="/Student/Create"
+               style="margin: 10px 5px; padding: 10px 20px; border-radius: 5px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; background-color: #2874a7; color: white;">
+                <img src="~/Content/Images/RegisterIcon.png" alt="Register Icon" style="margin-right: 10px; height: 50px;" />
+                Register as Student
+            </a>
+
+            <a class="btn col-xl-6 col-10"
+               href="/Session/Index"
+               style="margin: 10px 5px; padding: 10px 20px; border-radius: 5px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; background-color: #2874a7; color: white;">
+                <img src="~/Content/Images/LoginIcon.png" alt="Login Icon" style="margin-right: 10px; height: 50px;" />
+                View Sessions
+            </a>
+        </div>
+    </div>
+</div>
