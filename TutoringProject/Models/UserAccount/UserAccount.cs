@@ -38,5 +38,11 @@ namespace TutoringProject.Models.UserAccount
         [Required(ErrorMessage = "Role is required")]
         [StringLength(50, ErrorMessage = "Role cannot exceed 50 characters")]
         public string Role { get; set; }
+
+        [ForeignKey("Id")]
+        public virtual Student.Student Student { get; set; }
+
+        [ForeignKey("Id")]
+        public virtual Tutor.Tutor Tutor { get; set; }
     }
 }
