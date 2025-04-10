@@ -25,6 +25,11 @@ namespace TutoringProject.Controllers
         //GET : Session/Create for student and tutors dropdown list
         public ActionResult Create()
         {
+            if (Session["UserId"] == null || !Session["Role"].Equals("Tutor"))
+            {
+                return RedirectToAction("Index", "Home");
+            } 
+
             using (var db = new TutorContext()) 
             { 
                 ViewBag.Tutors = db.Tutors.ToList().Select(t => new
@@ -45,6 +50,11 @@ namespace TutoringProject.Controllers
         [HttpPost]
         public ActionResult Create(Session session)
         {
+            if (Session["UserId"] == null || !Session["Role"].Equals("Tutor"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (ModelState.IsValid)
             {
                 using (var db = new TutorContext())

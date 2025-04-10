@@ -26,21 +26,6 @@ namespace TutoringProject.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Create(Student student)
-        {
-            if (ModelState.IsValid) //checks model for required ect..
-            {
-                using (var db = new TutorContext())
-                {
-                    db.Students.Add(student);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            return View(student);
-        }
-
         public ActionResult Edit(int id)
         {
             using (var db = new TutorContext()) 
@@ -66,24 +51,6 @@ namespace TutoringProject.Controllers
                     return RedirectToAction("Index");
                 }
                 return View(student);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult Delete(int id)
-        {
-            using (var db = new TutorContext())
-            {
-                var student = db.Students.Find(id);
-                if (student == null)
-                {
-                    return HttpNotFound();
-                }
-
-                db.Students.Remove(student);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
             }
         }
 
