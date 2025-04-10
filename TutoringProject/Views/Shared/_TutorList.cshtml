@@ -3,7 +3,7 @@
 @foreach (var tutor in Model)
 {
     <a class="dropdown-item" href="/Tutor/Details/@tutor.Id">
-         @tutor.Fname @tutor.Lname – @tutor.Email
+         @tutor.UserAccount.Fname @tutor.UserAccount.Lname – @tutor.UserAccount.Email
     </a>
 }
 

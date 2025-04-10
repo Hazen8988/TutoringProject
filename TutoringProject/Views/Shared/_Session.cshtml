@@ -4,7 +4,7 @@
     <td>@Model.Id</td>
     <td>@Model.Time</td>
     <td>@Model.Subject</td>
-    <td>@Model.Student.Fname @Model.Student.Lname</td>
+    <td>@Model.Student.UserAccount.Fname @Model.Student.UserAccount.Lname</td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Details", "Details", new { id = Model.Id }) |

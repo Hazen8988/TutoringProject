@@ -4,7 +4,7 @@
 @foreach (var session in Model)
 {
     <a class="dropdown-item" href="/Session/Details/@session.Id">
-         @session.Subject with @session.Student.Fname @session.Student.Lname – @session.Time.ToShortTimeString()
+         @session.Subject with @session.Student.UserAccount.Fname @session.Student.UserAccount.Lname – @session.Time.ToShortTimeString()
     </a>
 }
 

@@ -11,21 +11,21 @@
     @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Fname)
-        @Html.TextBoxFor(model => model.Fname, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Fname)
+        @Html.LabelFor(model => model.UserAccount.Fname)
+        @Html.TextBoxFor(model => model.UserAccount.Fname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserAccount.Fname)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Lname)
-        @Html.TextBoxFor(model => model.Lname, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Lname)
+        @Html.LabelFor(model => model.UserAccount.Lname)
+        @Html.TextBoxFor(model => model.UserAccount.Lname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserAccount.Lname)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Email)
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Email)
+        @Html.LabelFor(model => model.UserAccount.Email)
+        @Html.TextBoxFor(model => model.UserAccount.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserAccount.Email)
     </div>
 
 

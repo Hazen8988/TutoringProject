@@ -32,6 +32,7 @@ namespace TutoringProject.Controllers
                     Id = t.Id,
                     FnameLname = t.UserAccount.Fname + " " + t.UserAccount.Lname
                 }).ToList();
+                
                 ViewBag.Students = db.Students.ToList().Select(s => new
                 {
                     Id = s.Id,

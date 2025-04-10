@@ -4,7 +4,7 @@
 @foreach (var student in Model)
 {
     <a class="dropdown-item" href="/Student/Details/@student.Id">
-         @student.Fname @student.Lname – @student.Email
+         @student.UserAccount.Fname @student.UserAccount.Lname – @student.UserAccount.Email
     </a>
 }
 

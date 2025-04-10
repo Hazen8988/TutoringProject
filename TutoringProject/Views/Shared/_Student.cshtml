@@ -2,9 +2,9 @@
 
 <tr>
     <td>@Model.Id</td>
-    <td>@Model.Fname</td>
-    <td>@Model.Lname</td>
-    <td>@Model.Email</td>
+    <td>@Model.UserAccount.Fname</td>
+    <td>@Model.UserAccount.Lname</td>
+    <td>@Model.UserAccount.Email</td>
     <td>@Model.Birthday</td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
