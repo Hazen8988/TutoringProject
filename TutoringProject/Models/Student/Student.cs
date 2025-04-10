@@ -11,13 +11,25 @@ namespace TutoringProject.Models.Student
     public class Student
     {
         [Key]
-        [ForeignKey("UserAccount")]
         public int Id { get; set; }
-        public virtual UserAccount.UserAccount UserAccount { get; set; }
+
+        [Required(ErrorMessage = "First name is required")]
+        [StringLength(50, ErrorMessage = "First name cannot exceed 50 characters")]
+        public string Fname { get; set; }
+
+        [Required(ErrorMessage = "Last name is required")]
+        [StringLength(50, ErrorMessage = "Last name cannot exceed 50 characters")]
+        public string Lname { get; set; }
+
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid email format")]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        [Column(TypeName = "datetime2")]
         public DateTime Birthday { get; set; }
+
+
+
     }
 }
