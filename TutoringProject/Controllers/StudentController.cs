@@ -30,7 +30,7 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext()) 
             {
-                var student = db.Students.Find(id);
+                var student = db.Students.Include("UserAccount").ToList().Find(s => s.Id == id);
                 if (student == null) 
                 { 
                     return HttpNotFound();
@@ -58,7 +58,7 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var student = db.Students.Find(id);
+                var student = db.Students.Include("UserAccount").ToList().Find(s => s.Id == id);
                 if (student == null)
                 {
                     return HttpNotFound();
