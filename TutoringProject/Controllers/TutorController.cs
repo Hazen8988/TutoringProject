@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TutoringProject.Models.Tutor;
 
+
 namespace TutoringProject.Controllers
 {
     public class TutorController : Controller
@@ -98,5 +99,20 @@ namespace TutoringProject.Controllers
                 return View(tutor);
             }
         }
+
+////search bar action method 
+//        public ActionResult Search(string query)
+//        {
+//            using (var db = new TutorContext())
+//            {
+//                {
+//                    var tutors = db.Tutors
+//                        .Where(t => t.Fname.Contains(query) || t.Lname.Contains(query))
+//                        .ToList();
+//                    return PartialView("_TutorList", tutors);
+
+//                }
+//            }
+//        }
     }
 }

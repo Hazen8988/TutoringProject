@@ -33,12 +33,30 @@
                         @Html.ActionLink("Students", "Index", "Student", null, new { @class = "nav-link" })
                     </li>
                 </ul>
+                <form class="d-flex align-items-center my-2 my-lg-0 ml-3 ms-auto" id="searchForm">
+                    <select class="form-control me-2 mr-2" id="searchType">
+                        <option value="Tutors">Tutors</option>
+                        <option value="Students">Students</option>
+                        <option value="Sessions">Sessions</option>
+                    </select>
+                    <div class="position-relative">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="Search..." aria-label="Search" style="width: 400px;">
+                        <!-- Dropdown container -->
+                        <div id="autocompleteResults" class="dropdown-menu show w-100" style="max-height: 300px; overflow-y: auto; display: none; position: absolute; top: 100%; left: 0; z-index: 1000;">
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+
             </div>
         </div>
     </nav>
 
+
+
     <!-- Main Content -->
     <div class="container body-content mt-4">
+        <div id="searchResults" class="mb-4"></div>
         @RenderBody()
         <hr />
         <footer class="text-center text-muted">
@@ -49,5 +67,39 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            $("#searchForm").submit(function (e) {
+                e.preventDefault();
+
+                const query = $("#searchInput").val();
+                const type = $("#searchType").val(); // Tutors, Students, or Sessions
+
+                $.ajax({
+                    url: `/Search/${type}`,
+                    type: 'GET',
+                    data: { searchTerm: query },
+                    success: function (data) {
+                        console.log("Search successful. Data:", data);
+                        //$("#searchResults").html(data);
+                        $("#autocompleteResults").html(data).show();
+                        $("#searchInput").val(""); // Clear the search input
+                        //$("#autocompleteResults").html(data);
+
+                    },
+                    error: function () {
+                        alert("Search failed.");
+                        $("#searchResults").html("<p>Error retrieving results. Please try again later.</p>");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)*@
 </body>
 </html>

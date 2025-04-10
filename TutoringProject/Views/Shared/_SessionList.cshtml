@@ -1,0 +1,30 @@
+﻿@model List<TutoringProject.Models.Session.Session>
+
+
+@foreach (var session in Model)
+{
+    <a class="dropdown-item" href="/Session/Details/@session.Id">
+         @session.Subject with @session.Student.Fname @session.Student.Lname – @session.Time.ToShortTimeString()
+    </a>
+}
+
+
+@*@foreach (var session in Model)
+    {
+        <tr>
+            <td>@session.Id</td>
+            <td>@session.Time</td>
+            <td>@session.Subject</td>
+            <td>@session.Student.Fname @session.Student.Lname</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = session.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = session.Id }) |
+                <span>
+                    @using (Html.BeginForm("Delete", "Session", new { id = session.Id }, FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-link">Delete</button>
+                    }
+                </span>
+            </td>
+        </tr>
+    }*@

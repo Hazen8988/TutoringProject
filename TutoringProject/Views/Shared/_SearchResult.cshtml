@@ -1,0 +1,21 @@
+﻿@using TutoringProject.Models.Tutor
+@using TutoringProject.Models.Student
+@using TutoringProject.Models.Session
+@model dynamic
+
+@if (Model is List<Tutor>)
+{
+    @Html.Partial("~/Views/Shared/_TutorList.cshtml", Model as List<Tutor>)
+}
+else if (Model is List<Student>)
+{
+    @Html.Partial("~/Views/Shared/_StudentList.cshtml", Model as List<Student>)
+}
+else if (Model is List<Session>)
+{
+    @Html.Partial("~/Views/Shared/_SessionList.cshtml", Model as List<Session>)
+}
+else
+{
+    <p>No results found.</p>
+}
