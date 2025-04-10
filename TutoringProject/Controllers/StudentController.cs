@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TutoringProject.Models;
 using TutoringProject.Models.Student;
 
 
@@ -13,7 +14,7 @@ namespace TutoringProject.Controllers
     {
         public ActionResult Index()
         {
-            using (var db = new StudentContext())
+            using (var db = new TutorContext())
             {
                 var students = db.Students.ToList();
                 return View(students);
@@ -30,7 +31,7 @@ namespace TutoringProject.Controllers
         {
             if (ModelState.IsValid) //checks model for required ect..
             {
-                using (var db = new StudentContext())
+                using (var db = new TutorContext())
                 {
                     db.Students.Add(student);
                     db.SaveChanges();
@@ -42,7 +43,7 @@ namespace TutoringProject.Controllers
 
         public ActionResult Edit(int id)
         {
-            using (var db = new StudentContext()) 
+            using (var db = new TutorContext()) 
             {
                 var student = db.Students.Find(id);
                 if (student == null) 
@@ -56,7 +57,7 @@ namespace TutoringProject.Controllers
         [HttpPost]
         public ActionResult Edit(Student student)
         {
-            using (var db = new StudentContext()) 
+            using (var db = new TutorContext()) 
             {
                 if (ModelState.IsValid) 
                 {
@@ -71,7 +72,7 @@ namespace TutoringProject.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            using (var db = new StudentContext())
+            using (var db = new TutorContext())
             {
                 var student = db.Students.Find(id);
                 if (student == null)
@@ -88,7 +89,7 @@ namespace TutoringProject.Controllers
 
         public ActionResult Details(int id)
         {
-            using (var db = new StudentContext())
+            using (var db = new TutorContext())
             {
                 var student = db.Students.Find(id);
                 if (student == null)

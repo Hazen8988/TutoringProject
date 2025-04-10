@@ -115,6 +115,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -122,12 +123,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Session\SessionContext.cs" />
+    <Compile Include="Migrations\202504101826508_InitialCreate.cs" />
+    <Compile Include="Migrations\202504101826508_InitialCreate.Designer.cs">
+      <DependentUpon>202504101826508_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504101831310_FixDateFormat.cs" />
+    <Compile Include="Migrations\202504101831310_FixDateFormat.Designer.cs">
+      <DependentUpon>202504101831310_FixDateFormat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Session\Session.cs" />
-    <Compile Include="Models\Student\StudentContext.cs" />
     <Compile Include="Models\Student\Student.cs" />
-    <Compile Include="Models\Tutor\TutorContext.cs" />
+    <Compile Include="Models\TutorContext.cs" />
     <Compile Include="Models\Tutor\Tutor.cs" />
+    <Compile Include="Models\UserAccount\UserAccount.cs" />
+    <Compile Include="Models\UserAccount\UserRegistrationRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +214,8 @@
     <Content Include="Views\Shared\_Student.cshtml" />
     <Content Include="Views\Shared\_Tutor.cshtml" />
     <Content Include="Views\Shared\_Session.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -231,6 +243,17 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Authentication\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202504101826508_InitialCreate.resx">
+      <DependentUpon>202504101826508_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504101831310_FixDateFormat.resx">
+      <DependentUpon>202504101831310_FixDateFormat.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
