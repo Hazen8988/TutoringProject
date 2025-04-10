@@ -14,6 +14,7 @@ namespace TutoringProject.Models.Session
         public int Id { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [Column(TypeName = "datetime2")]
         public DateTime Time { get; set; }
         [Required]
         public string Subject { get; set; }
