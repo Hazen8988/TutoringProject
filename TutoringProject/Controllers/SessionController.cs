@@ -8,6 +8,7 @@ using TutoringProject.Models;
 using TutoringProject.Models.Session;
 using TutoringProject.Models.Student;
 using TutoringProject.Models.Tutor;
+using TutoringProject.Models.UserAccount;
 
 
 namespace TutoringProject.Controllers
@@ -18,7 +19,7 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var sessions = db.Sessions.Include(s => s.Student).ToList();
+                var sessions = db.Sessions.Include(s => s.Student.UserAccount).ToList();
                 return View(sessions);
             }
         }
@@ -31,18 +32,25 @@ namespace TutoringProject.Controllers
             } 
 
             using (var db = new TutorContext()) 
-            { 
-                ViewBag.Tutors = db.Tutors.ToList().Select(t => new
-                {
-                    Id = t.Id,
-                    FnameLname = t.UserAccount.Fname + " " + t.UserAccount.Lname
-                }).ToList();
-                
-                ViewBag.Students = db.Students.ToList().Select(s => new
-                {
-                    Id = s.Id,
-                    FnameLname = s.UserAccount.Fname + " " + s.UserAccount.Lname
-                }).ToList();
+            {
+                List<UserAccount> userAccounts = db.UserAccounts
+                    .Include(s => s.Student)
+                    .Include(t => t.Tutor)
+                    .ToList();
+
+                ViewBag.Tutors = userAccounts.Where(u => u.Role == "Tutor").ToList()
+                    .Select(t => new
+                    {
+                        Id = t.Id,
+                        FnameLname = t.Fname + " " + t.Lname
+                    }).ToList();
+
+                ViewBag.Students = userAccounts.Where(u => u.Role == "Student").ToList()
+                    .Select(s => new
+                    {
+                        Id = s.Id,
+                        FnameLname = s.Fname + " " + s.Lname
+                    }).ToList();
             }
             return View();
         }
@@ -76,16 +84,25 @@ namespace TutoringProject.Controllers
                 {
                     return HttpNotFound();
                 }
-                ViewBag.Tutors = db.Tutors.ToList().Select(t => new
-                {
-                    Id = t.Id,
-                    FnameLname = t.UserAccount.Fname + " " + t.UserAccount.Lname
-                }).ToList();
-                ViewBag.Students = db.Students.ToList().Select(s => new
-                {
-                    Id = s.Id,
-                    FnameLname = s.UserAccount.Fname + " " + s.UserAccount.Lname
-                }).ToList();
+                List<UserAccount> userAccounts = db.UserAccounts
+                    .Include(s => s.Student)
+                    .Include(t => t.Tutor)
+                    .ToList();
+
+                ViewBag.Tutors = userAccounts.Where(u => u.Role == "Tutor").ToList()
+                    .Select(t => new
+                    {
+                        Id = t.Id,
+                        FnameLname = t.Fname + " " + t.Lname
+                    }).ToList();
+
+                ViewBag.Students = userAccounts.Where(u => u.Role == "Student").ToList()
+                    .Select(s => new
+                    {
+                        Id = s.Id,
+                        FnameLname = s.Fname + " " + s.Lname
+                    }).ToList();
+                
                 return View(session);
             }
         }
