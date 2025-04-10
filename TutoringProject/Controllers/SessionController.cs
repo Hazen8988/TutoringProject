@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TutoringProject.Models;
 using TutoringProject.Models.Session;
 using TutoringProject.Models.Student;
 using TutoringProject.Models.Tutor;
@@ -16,7 +15,8 @@ namespace TutoringProject.Controllers
     {
         public ActionResult Index()
         {
-            using (var db = new TutorContext())
+            using (var db = new SessionContext())
+            using (var dbStudent = new StudentContext())
             {
                 var sessions = db.Sessions.Include(s => s.Student).ToList();
                 return View(sessions);
@@ -31,16 +31,17 @@ namespace TutoringProject.Controllers
             } 
 
             using (var db = new TutorContext()) 
+            using (var dbStudent = new StudentContext())
             { 
                 ViewBag.Tutors = db.Tutors.ToList().Select(t => new
                 {
                     Id = t.Id,
-                    FnameLname = t.UserAccount.Fname + " " + t.UserAccount.Lname
+                    FnameLname = t.Fname + " " + t.Lname
                 }).ToList();
-                ViewBag.Students = db.Students.ToList().Select(s => new
+                ViewBag.Students = dbStudent.Students.ToList().Select(s => new
                 {
                     Id = s.Id,
-                    FnameLname = s.UserAccount.Fname + " " + s.UserAccount.Lname
+                    FnameLname = s.Fname + " " + s.Lname
                 }).ToList();
             }
             return View();
@@ -56,7 +57,7 @@ namespace TutoringProject.Controllers
 
             if (ModelState.IsValid)
             {
-                using (var db = new TutorContext())
+                using (var db = new SessionContext())
                 {
                     db.Sessions.Add(session);
                     db.SaveChanges();
@@ -68,22 +69,24 @@ namespace TutoringProject.Controllers
 
         public ActionResult Edit(int id)
         {
-            using (var db = new TutorContext())
+            using (var db = new SessionContext())
+            using (var studentdb = new StudentContext())
+            using (var tutordb = new TutorContext())
             {
                 var session = db.Sessions.Find(id);
                 if (session == null)
                 {
                     return HttpNotFound();
                 }
-                ViewBag.Tutors = db.Tutors.ToList().Select(t => new
+                ViewBag.Tutors = tutordb.Tutors.ToList().Select(t => new
                 {
                     Id = t.Id,
-                    FnameLname = t.UserAccount.Fname + " " + t.UserAccount.Lname
+                    FnameLname = t.Fname + " " + t.Lname
                 }).ToList();
-                ViewBag.Students = db.Students.ToList().Select(s => new
+                ViewBag.Students = studentdb.Students.ToList().Select(s => new
                 {
                     Id = s.Id,
-                    FnameLname = s.UserAccount.Fname + " " + s.UserAccount.Lname
+                    FnameLname = s.Fname + " " + s.Lname
                 }).ToList();
                 return View(session);
             }
@@ -92,7 +95,7 @@ namespace TutoringProject.Controllers
         [HttpPost]
         public ActionResult Edit(Session session)
         {
-            using (var db = new TutorContext())
+            using (var db = new SessionContext())
             {
                 if (ModelState.IsValid)
                 {
@@ -108,7 +111,7 @@ namespace TutoringProject.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            using (var db = new TutorContext())
+            using (var db = new SessionContext())
             {
                 var session = db.Sessions.Find(id);
                 if (session == null)
@@ -125,7 +128,7 @@ namespace TutoringProject.Controllers
 
         public ActionResult Details(int id)
         {
-            using (var db = new TutorContext())
+            using (var db = new SessionContext())
             {
                 var session = db.Sessions.Find(id);
                 if (session == null)

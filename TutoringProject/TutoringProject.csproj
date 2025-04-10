@@ -119,6 +119,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TutorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,6 +215,10 @@
     <Content Include="Views\Shared\_Session.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_SearchResult.cshtml" />
+    <Content Include="Views\Shared\_SessionList.cshtml" />
+    <Content Include="Views\Shared\_StudentList.cshtml" />
+    <Content Include="Views\Shared\_TutorList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

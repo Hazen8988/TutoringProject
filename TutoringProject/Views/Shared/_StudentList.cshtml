@@ -1,0 +1,31 @@
+@model List<TutoringProject.Models.Student.Student>
+
+
+@foreach (var student in Model)
+{
+    <a class="dropdown-item" href="/Student/Details/@student.Id">
+         @student.Fname @student.Lname – @student.Email
+    </a>
+}
+
+
+@*@foreach (var student in Model)
+    {
+        <tr>
+            <td>@student.Id</td>
+            <td>@student.Fname</td>
+            <td>@student.Lname</td>
+            <td>@student.Email</td>
+            <td>@student.Birthday</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = student.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = student.Id }) |
+                <span>
+                    @using (Html.BeginForm("Delete", "Student", new { id = student.Id }, FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-link">Delete</button>
+                    }
+                </span>
+            </td>
+        </tr>
+    }*@
