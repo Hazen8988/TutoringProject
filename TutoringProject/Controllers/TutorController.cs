@@ -15,7 +15,7 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var tutors = db.Tutors.ToList();
+                var tutors = db.Tutors.Include("UserAccount").ToList();
                 return View(tutors);
             }
         }
