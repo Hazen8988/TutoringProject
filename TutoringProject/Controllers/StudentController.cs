@@ -21,11 +21,6 @@ namespace TutoringProject.Controllers
             }
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         public ActionResult Edit(int id)
         {
             using (var db = new TutorContext()) 
