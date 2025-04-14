@@ -10,12 +10,6 @@
     <td>@Model.UserAccount.Email</td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = @Model.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = @Model.Id }) |
-        <span>
-            @using (Html.BeginForm("Delete", "Tutor", new { id = @Model.Id }, FormMethod.Post))
-            {
-                <button type="submit" class="btn btn-link">Delete</button>
-            }
-        </span>
+        @Html.ActionLink("Details", "Details", new { id = @Model.Id })
     </td>
 </tr>

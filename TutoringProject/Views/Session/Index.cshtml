@@ -6,7 +6,7 @@
 
 <h2>Session List</h2>
 
-@if (Session["UserId"] != null && User.IsInRole("Tutor"))
+@if (Session["UserId"] != null && Session["Role"].Equals("Tutor"))
 {
     <p>@Html.ActionLink("Create New", "Create")</p>
 }

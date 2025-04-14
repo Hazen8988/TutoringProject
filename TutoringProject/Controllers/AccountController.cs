@@ -104,6 +104,7 @@ namespace TutoringProject.Controllers
                 {
                     Session["UserId"] = user.Id;
                     Session["Role"] = user.Role;
+                    Session["Name"] = user.Fname + " " + user.Lname;
                     return RedirectToAction("Index", "Home");
                 }
                 else

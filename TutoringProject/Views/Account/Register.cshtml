@@ -1,78 +1,116 @@
 ﻿@model TutoringProject.Models.UserAccount.UserRegistrationRecord
 
-
 @{
     ViewBag.Title = "Register";
 }
 
-@Html.ValidationSummary(false)
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+<h2>Register</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    @Html.Label("Email")
-    @Html.EditorFor(model => model.UserAccount.Email)
-    @Html.ValidationMessageFor(model => model.UserAccount.Email)
-    <br />
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    @Html.Label("Password")
-    @Html.EditorFor(model => model.UserAccount.Password)
-    @Html.ValidationMessageFor(model => model.UserAccount.Password)
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserAccount.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UserAccount.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserAccount.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-    @Html.Label("Confirm Password")
-    @Html.EditorFor(model => model.UserAccount.ConfirmPassword)
-    @Html.ValidationMessageFor(model => model.UserAccount.ConfirmPassword)
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserAccount.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(model => model.UserAccount.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserAccount.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-    @Html.Label("First name")
-    @Html.EditorFor(model => model.UserAccount.Fname)
-    @Html.ValidationMessageFor(model => model.UserAccount.Fname)
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserAccount.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(model => model.UserAccount.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserAccount.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-    @Html.Label("Last name")
-    @Html.EditorFor(model => model.UserAccount.Lname)
-    @Html.ValidationMessageFor(model => model.UserAccount.Lname)
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserAccount.Fname, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UserAccount.Fname, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserAccount.Fname, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-    @Html.LabelFor(model => model.Role)
-    @Html.DropDownListFor(model => model.Role, new SelectList(new List<string>() { "Tutor", "Student" }), "Select Role")
-    @Html.ValidationMessageFor(model => model.Role)
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserAccount.Lname, "Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UserAccount.Lname, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserAccount.Lname, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
+    <div class="form-group">
+        @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Role, new SelectList(new List<string>() { "Tutor", "Student" }), "Select Role", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @* Conditional Fields - Apply styling within these divs *@
     <div id="TutorFields" style="display:none;">
-        @Html.Label("Delivery")
-        @Html.EditorFor(model => model.Tutor.Delivery)
-        @Html.ValidationMessageFor(model => model.Tutor.Delivery)
-        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tutor.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tutor.Delivery, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tutor.Delivery, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        @Html.Label("Salary")
-        @Html.EditorFor(model => model.Tutor.Salary)
-        @Html.ValidationMessageFor(model => model.Tutor.Salary)
-        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tutor.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tutor.Salary, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tutor.Salary, "", new { @class = "text-danger" })
+            </div>
+        </div>
     </div>
 
     <div id="StudentFields" style="display:none;">
-        @Html.Label("Birthday")
-        @Html.EditorFor(model => model.Student.Birthday)
-        @Html.ValidationMessageFor(model => model.Student.Birthday)
-        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Student.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Student.Birthday, new { htmlAttributes = new { @class = "form-control" } }) @* Consider using a date picker type *@
+                @Html.ValidationMessageFor(model => model.Student.Birthday, "", new { @class = "text-danger" })
+            </div>
+        </div>
     </div>
 
-    <button type="submit">Register</button>
+    @* Submit Button - Styled like Login *@
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Register" class="btn btn-default" />
+        </div>
+    </div>
 }
 
-
+@* Keep the script for conditional fields *@
 <script>
     document.getElementById("Role").addEventListener("change", function () {
         var role = this.value;
         document.getElementById("TutorFields").style.display = role == "Tutor" ? "block" : "none";
         document.getElementById("StudentFields").style.display = role == "Student" ? "block" : "none";
     });
+    // Trigger change on page load in case of validation failure and postback
+    document.getElementById("Role").dispatchEvent(new Event('change'));
 </script>
 
-
-@* this will perform client-side validation *@
+@* Keep the script section for client-side validation *@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

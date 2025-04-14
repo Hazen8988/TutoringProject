@@ -79,6 +79,9 @@
         <hr />
         <footer class="text-center text-muted">
             <p>&copy; @DateTime.Now.Year - Tutor Service</p>
+            <br />
+            @Html.ActionLink("Register", "Register", "Account")
+            @Html.ActionLink("Sessions", "Index", "Session")
         </footer>
     </div>
 
@@ -121,3 +124,16 @@
     @RenderSection("scripts", required: false)*@
 </body>
 </html>
+
+<style>
+    body {
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+
+    footer {
+        margin: 0;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
+    }
+</style>
