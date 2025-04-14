@@ -45,7 +45,10 @@ namespace TutoringProject.Controllers
             using (var db = new TutorContext()) 
             {
                 var sessions = db.Sessions
-                    .Include("UserAccount")
+                    .Include("Student")
+                    .Include("Tutor")
+                    .Include("Student.UserAccount")
+                    .Include("Tutor.UserAccount")
                     .Where(s => s.Subject.Contains(searchTerm))
                     .ToList();
 
