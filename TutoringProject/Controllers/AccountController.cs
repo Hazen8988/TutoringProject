@@ -6,6 +6,7 @@ using TutoringProject.Models.Student;
 using TutoringProject.Models.Tutor;
 using TutoringProject.Models.UserAccount;
 using System.Diagnostics;
+using System.Web.Security;
 
 namespace TutoringProject.Controllers
 {
@@ -32,16 +33,11 @@ namespace TutoringProject.Controllers
 
             if (record.Role == "Tutor")
                 foreach (var key in ModelState.Keys.Where(k => k.StartsWith("Student.")).ToList())
-                {
                     ModelState.Remove(key);
-                    Debug.WriteLine(key + " removed key from Student");
-                }
             else if (record.Role == "Student")
                 foreach (var key in ModelState.Keys.Where(k => k.StartsWith("Tutor.")).ToList())
-                {
                     ModelState.Remove(key);
-                    Debug.WriteLine(key + " removed key from Tutor");
-                }
+                
 
             if (ModelState.IsValid)
             {
@@ -81,15 +77,6 @@ namespace TutoringProject.Controllers
                 }
             }
 
-            foreach (var key in ModelState.Keys)
-            {
-                var errors = ModelState[key].Errors;
-                foreach (var error in errors)
-                {
-                    Debug.WriteLine($"Key: {key}, Error: {error.ErrorMessage}");
-                }
-            }
-
             return View(record);
         }
 
@@ -125,6 +112,13 @@ namespace TutoringProject.Controllers
                     return View(userAccount);
                 }
             }
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
