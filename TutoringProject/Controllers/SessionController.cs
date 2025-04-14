@@ -126,6 +126,11 @@ namespace TutoringProject.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
+            if (Session["UserId"] == null || !Session["Role"].Equals("Tutor"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             using (var db = new TutorContext())
             {
                 var session = db.Sessions.Find(id);

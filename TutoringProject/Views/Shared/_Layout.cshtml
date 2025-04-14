@@ -54,6 +54,9 @@
                             <li class="nav-item">
                                 @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "nav-link" })
                             </li>
+                            <li class="nav-item">
+                                <p style="color: white; padding: 8px 0 0 0; margin: 0;">Signed in as @Session["Name"]</p>
+                            </li>
                         }
                         else
                         {
@@ -135,5 +138,6 @@
         padding: 20px;
         border-radius: 20px;
         box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
+        background-color: aliceblue;
     }
 </style>

@@ -7,12 +7,15 @@
     <td>@Model.Student.UserAccount.Fname @Model.Student.UserAccount.Lname</td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = Model.Id }) |
-        <span>
-            @using (Html.BeginForm("Delete", "Session", new { id = Model.Id }, FormMethod.Post))
-            {
-                <button type="submit" class="btn btn-link">Delete</button>
-            }
-        </span>
+        @Html.ActionLink("Details", "Details", new { id = Model.Id })
+        @if (Session["UserId"] != null && Session["Role"].Equals("Tutor"))
+        {
+            <span>
+                @using (Html.BeginForm("Delete", "Session", new { id = Model.Id }, FormMethod.Post))
+                {
+                    <button type="submit" class="btn btn-link">Delete</button>
+                }
+            </span>
+        }
     </td>
 </tr>
