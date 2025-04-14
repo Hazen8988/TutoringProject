@@ -150,7 +150,10 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var session = db.Sessions.Find(id);
+                var session = db.Sessions
+                    .Include("Student.UserAccount")
+                    .Include("Tutor.UserAccount")
+                    .ToList().Find(s => id == s.Id);
                 if (session == null)
                 {
                     return HttpNotFound();
