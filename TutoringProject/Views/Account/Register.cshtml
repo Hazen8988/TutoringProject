@@ -62,7 +62,6 @@
         </div>
     </div>
 
-    @* Conditional Fields - Apply styling within these divs *@
     <div id="TutorFields" style="display:none;">
         <div class="form-group">
             @Html.LabelFor(model => model.Tutor.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -85,13 +84,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Student.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Student.Birthday, new { htmlAttributes = new { @class = "form-control" } }) @* Consider using a date picker type *@
+                @Html.EditorFor(model => model.Student.Birthday, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Student.Birthday, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
 
-    @* Submit Button - Styled like Login *@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Register" class="btn btn-default" />
@@ -99,18 +97,15 @@
     </div>
 }
 
-@* Keep the script for conditional fields *@
 <script>
     document.getElementById("Role").addEventListener("change", function () {
         var role = this.value;
         document.getElementById("TutorFields").style.display = role == "Tutor" ? "block" : "none";
         document.getElementById("StudentFields").style.display = role == "Student" ? "block" : "none";
     });
-    // Trigger change on page load in case of validation failure and postback
     document.getElementById("Role").dispatchEvent(new Event('change'));
 </script>
 
-@* Keep the script section for client-side validation *@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
