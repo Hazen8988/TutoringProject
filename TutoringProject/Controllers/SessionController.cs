@@ -24,7 +24,6 @@ namespace TutoringProject.Controllers
             }
         }
         //GET : Session/Create for student and tutors dropdown list
-        [Authorize(Roles = "Tutor")]
         public ActionResult Create()
         {
             if (Session["UserId"] == null || !Session["Role"].Equals("Tutor"))
