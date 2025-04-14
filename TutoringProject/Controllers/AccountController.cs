@@ -73,6 +73,7 @@ namespace TutoringProject.Controllers
                     }
 
                     context.SaveChanges();
+                    TempData["RegistrationSuccess"] = "Registration successful!";
                     return RedirectToAction("Index", "Home");
                 }
             }
