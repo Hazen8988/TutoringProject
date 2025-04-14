@@ -47,7 +47,25 @@
                     </div>
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
-
+                <div>
+                    <ul class="navbar-nav ml-auto">
+                        @if (Session["UserId"] != null)
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>

@@ -6,7 +6,10 @@
 
 <h2>Session List</h2>
 
-<p>@Html.ActionLink("Create New", "Create")</p>
+@if (Session["UserId"] != null && User.IsInRole("Tutor"))
+{
+    <p>@Html.ActionLink("Create New", "Create")</p>
+}
 
 <table class="table">
     <tr>

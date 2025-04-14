@@ -136,6 +136,7 @@
     <Compile Include="Models\Session\Session.cs" />
     <Compile Include="Models\Student\Student.cs" />
     <Compile Include="Models\TutorContext.cs" />
+    <Compile Include="Models\TutorRoleProvider.cs" />
     <Compile Include="Models\Tutor\Tutor.cs" />
     <Compile Include="Models\UserAccount\UserAccount.cs" />
     <Compile Include="Models\UserAccount\UserRegistrationRecord.cs" />
@@ -247,9 +248,7 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Authentication\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202504101826508_InitialCreate.resx">
       <DependentUpon>202504101826508_InitialCreate.cs</DependentUpon>
