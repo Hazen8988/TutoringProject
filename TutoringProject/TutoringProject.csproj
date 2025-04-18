@@ -116,6 +116,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -133,11 +134,11 @@
       <DependentUpon>202504101831310_FixDateFormat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Session\Session.cs" />
-    <Compile Include="Models\Student\Student.cs" />
-    <Compile Include="Models\TutorContext.cs" />
-    <Compile Include="Models\TutorRoleProvider.cs" />
-    <Compile Include="Models\Tutor\Tutor.cs" />
+    <Compile Include="Models\Session.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="TutorContext.cs" />
+    <Compile Include="TutorRoleProvider.cs" />
+    <Compile Include="Models\Tutor.cs" />
     <Compile Include="Models\UserAccount\UserAccount.cs" />
     <Compile Include="Models\UserAccount\UserRegistrationRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

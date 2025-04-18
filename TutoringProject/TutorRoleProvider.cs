@@ -31,7 +31,14 @@ namespace TutoringProject.Models
 
         public override string[] FindUsersInRole(string roleName, string usernameToMatch)
         {
-            throw new NotImplementedException();
+            using (var context = new TutorContext())
+            {
+                var users = context.UserAccounts
+                    .Where(u => u.Role.Equals(roleName, StringComparison.OrdinalIgnoreCase) && u.Email.Contains(usernameToMatch))
+                    .Select(u => u.Email)
+                    .ToArray();
+                return users;
+            }
         }
 
         public override string[] GetAllRoles()
@@ -59,7 +66,15 @@ namespace TutoringProject.Models
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new NotImplementedException();
+            using (var context = new TutorContext())
+            {
+                var user = context.UserAccounts.FirstOrDefault(u => u.Email == username);
+                if (user != null)
+                {
+                    return user.Role.Equals(roleName, StringComparison.OrdinalIgnoreCase);
+                }
+            }
+            return false;
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
