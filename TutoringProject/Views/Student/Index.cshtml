@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TutoringProject.Models.Student.Student>
+﻿@model IEnumerable<TutoringProject.Models.UserAccount.UserAccount>
 
 
 @{
@@ -10,10 +10,9 @@
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.First().Id)</th>
-        <th>@Html.DisplayNameFor(model => model.First().UserAccount.Fname)</th>
-        <th>@Html.DisplayNameFor(model => model.First().UserAccount.Lname)</th>
-        <th>@Html.DisplayNameFor(model => model.First().UserAccount.Email)</th>
-        <th>@Html.DisplayNameFor(model => model.First().Birthday)</th>
+        <th>@Html.DisplayNameFor(model => model.First().Fname)</th>
+        <th>@Html.DisplayNameFor(model => model.First().Lname)</th>
+        <th>@Html.DisplayNameFor(model => model.First().Email)</th>
         <th></th>
     </tr>
     @foreach (var item in Model)

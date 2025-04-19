@@ -13,7 +13,7 @@ namespace TutoringProject.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202504101826508_InitialCreate"; }
+            get { return "202504190115528_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

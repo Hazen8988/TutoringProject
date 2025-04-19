@@ -1,4 +1,4 @@
-@model TutoringProject.Models.Tutor.Tutor
+@model TutoringProject.Models.UserAccount.UserAccount
 
 @{
     ViewBag.Title = "Tutor Details";
@@ -11,38 +11,39 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount.Fname)
+            @Html.DisplayNameFor(model => model.Fname)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.Fname)
+            @Html.DisplayFor(model => model.Fname)
         </dd>
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount.Lname)
+            @Html.DisplayNameFor(model => model.Lname)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.Lname)
+            @Html.DisplayFor(model => model.Lname)
         </dd>
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.UserAccount.Email)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UserAccount.Email)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Delivery)
+            Sessions
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Delivery)
-        </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Salary)
+            <ul>
+                @foreach (var session in ViewBag.Sessions)
+                {
+                    <li>
+                        @session.Course.Name - @session.Time
+                        @Html.ActionLink("Details", "Details", "Session", new { id = session.Id }, null)
+                    </li>
+                }
+            </ul>
         </dd>
     </dl>
 </div>

@@ -27,11 +27,11 @@ namespace TutoringProject.Controllers
         }
 
         [HttpPost] // to promote a user to admin
-        public ActionResult PromoteUser(string email)
+        public ActionResult MakeAdmin(int id)
         {
             using (var context = new TutorContext())
             {
-                var user = context.UserAccounts.FirstOrDefault(u => u.Email == email);
+                var user = context.UserAccounts.FirstOrDefault(u => u.Id == id);
                 if (user != null)
                 {
                     ViewBag.Message = "User promoted to admin successfully";
@@ -46,14 +46,16 @@ namespace TutoringProject.Controllers
             return View();
         }
 
-        [HttpDelete]
-        public ActionResult DeleteUserByEmail(string email)
+        [HttpPost]
+        public ActionResult DeleteUser(int id)
         {
             using (var context = new TutorContext())
             {
-                var user = context.UserAccounts.FirstOrDefault(u => u.Email == email);
+                var user = context.UserAccounts.FirstOrDefault(u => u.Id == id);
                 if (user != null)
                 {
+                    context.Sessions.RemoveRange(context.Sessions.Where(s => s.TutorId == id));
+
                     ViewBag.Message = "User deleted successfully";
                     context.UserAccounts.Remove(user);
                     context.SaveChanges();
@@ -66,6 +68,7 @@ namespace TutoringProject.Controllers
             }
         }
 
+
         [HttpGet]
         public ActionResult Courses()
         {
@@ -75,4 +78,45 @@ namespace TutoringProject.Controllers
                 return View(courses);
             }
         }
+
+        [HttpPost]
+        public ActionResult Course(Course course)
+        {
+            using (var context = new TutorContext())
+            {
+                if (ModelState.IsValid)
+                {
+                    context.Courses.Add(course);
+                    context.SaveChanges();
+                    ViewBag.Message = "Course added successfully";
+                }
+                else
+                {
+                    ViewBag.Message = "Error adding course";
+                }
+            }
+            return RedirectToAction("Courses");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCourse(int id)
+        {
+            using (var context = new TutorContext())
+            {
+                var course = context.Courses.FirstOrDefault(c => c.Id == id);
+                if (course != null)
+                {
+                    context.Courses.Remove(course);
+                    context.SaveChanges();
+                    ViewBag.Message = "Course deleted successfully";
+                }
+                else
+                {
+                    ViewBag.Message = "Course not found";
+                }
+            }
+            return RedirectToAction("Courses");
+        }
+
+    }
 }

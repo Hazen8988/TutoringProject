@@ -10,18 +10,30 @@
     <h4>Session</h4>
     <hr />
     <dl class="row">
+
+        <dt class="col-sm-2">
+            Course
+        </dt>
+        <dd class="col-sm-10">
+            <a href="/Course/Details/@Model.Course.Id">
+                @Model.Course.Name
+            </a>
+        </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Time)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Subject)
+            @Model.Time
         </dd>
 
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Student)
+            Tutor
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Tutor)
+            <a href="/Tutor/Details/@Model.Tutor.Id">
+                @Model.Tutor.Fname @Model.Tutor.Lname
+            </a>
         </dd>
 
     </dl>

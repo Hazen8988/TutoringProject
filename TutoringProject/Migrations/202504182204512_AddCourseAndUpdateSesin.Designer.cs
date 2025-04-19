@@ -7,13 +7,13 @@ namespace TutoringProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class FixDateFormat : IMigrationMetadata
+    public sealed partial class AddCourseAndUpdateSesin : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FixDateFormat));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCourseAndUpdateSesin));
         
         string IMigrationMetadata.Id
         {
-            get { return "202504101831310_FixDateFormat"; }
+            get { return "202504182204512_AddCourseAndUpdateSesin"; }
         }
         
         string IMigrationMetadata.Source

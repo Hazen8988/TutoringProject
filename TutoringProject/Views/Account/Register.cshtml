@@ -62,49 +62,12 @@
         </div>
     </div>
 
-    <div id="TutorFields" style="display:none;">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tutor.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tutor.Delivery, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tutor.Delivery, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tutor.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tutor.Salary, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tutor.Salary, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div id="StudentFields" style="display:none;">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Student.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Student.Birthday, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Student.Birthday, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Register" class="btn btn-default" />
         </div>
     </div>
 }
-
-<script>
-    document.getElementById("Role").addEventListener("change", function () {
-        var role = this.value;
-        document.getElementById("TutorFields").style.display = role == "Tutor" ? "block" : "none";
-        document.getElementById("StudentFields").style.display = role == "Student" ? "block" : "none";
-    });
-    document.getElementById("Role").dispatchEvent(new Event('change'));
-</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

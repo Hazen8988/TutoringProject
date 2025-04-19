@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TutoringProject.Models;
-using TutoringProject.Models.Tutor;
+using TutoringProject.Models.UserAccount;
 
 
 namespace TutoringProject.Controllers
@@ -15,38 +15,10 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var tutors = db.Tutors.Include("UserAccount").ToList();
+                var tutors = db.UserAccounts
+                    .Where(u => u.Role == "Tutor")
+                    .ToList();
                 return View(tutors);
-            }
-        }
-
-        public ActionResult Edit(int id)
-        {
-            using (var db = new TutorContext())
-            {
-                var tutor = db.Tutors.Include(t => t.UserAccount).ToList().Find(t => t.Id == id);
-                if (tutor == null)
-                {
-                    return HttpNotFound();
-                }
-
-                return View(tutor);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Tutor tutor)
-        {
-            using (var db = new TutorContext())
-            {
-                if (ModelState.IsValid)
-                {
-                    db.Entry(tutor).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-
-                return View(tutor);
             }
         }
 
@@ -54,11 +26,22 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var tutor = db.Tutors.Include(t => t.UserAccount).ToList().Find(t => t.Id == id);
+                var tutor = db.UserAccounts
+                    .Where(u => u.Role == "Tutor")
+                    .ToList()
+                    .Find(t => t.Id == id);
+
                 if (tutor == null)
                 {
                     return HttpNotFound();
                 }
+
+                var sessions = db.Sessions
+                    .Include(s => s.Course)
+                    .Where(s => s.TutorId == id)
+                    .ToList();
+
+                ViewBag.Sessions = sessions;
                 return View(tutor);
             }
         }

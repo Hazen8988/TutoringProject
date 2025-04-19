@@ -1,0 +1,72 @@
+@model IEnumerable<TutoringProject.Models.Course>
+
+@{
+    ViewBag.Title = "Admin Courses";
+}
+
+<h2>Admin Courses</h2>
+
+<div class="container">
+    <h3>Add New Course</h3>
+    @using (Html.BeginForm("Course", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.Label("Course Name", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBox("Name", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Description", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextArea("Description", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+
+    <hr />
+
+    <h3>Existing Courses</h3>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-info">@ViewBag.Message</div>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.Id</td>
+                    <td>@course.Name</td>
+                    <td>@course.Description</td>
+                    <td>
+                        @using (Html.BeginForm("DeleteCourse", "Admin", FormMethod.Post, new { @class = "delete-form" }))
+                        {
+                            @Html.Hidden("id", course.Id)
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

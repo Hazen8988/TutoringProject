@@ -1,0 +1,39 @@
+@model IEnumerable<TutoringProject.Models.UserAccount.UserAccount>
+
+<div>
+    <h2>User Management</h2>
+
+    @if (ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>
+    }
+
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Id)</th>
+            <th>Full Name</th>
+            <th>@Html.DisplayNameFor(model => model.First().Email)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Role)</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Fname @item.Lname</td>
+                <td>@item.Email</td>
+                <td>@item.Role</td>
+                <td>
+                    @using (Html.BeginForm("DeleteUser", "Admin", FormMethod.Post, new { id = "deleteForm_" + item.Id }))
+                    {
+                        @Html.Hidden("id", item.Id)
+                        <a href="#"
+                           id="deleteLink"
+                           onclick="document.getElementById('deleteForm_@item.Id').submit(); return false;"
+                           class="btn btn-primary">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

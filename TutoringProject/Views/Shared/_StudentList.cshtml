@@ -1,10 +1,10 @@
-@model List<TutoringProject.Models.Student.Student>
+@model List<TutoringProject.Models.UserAccount.UserAccount>
 
 
 @foreach (var student in Model)
 {
     <a class="dropdown-item" href="/Student/Details/@student.Id">
-         @student.UserAccount.Fname @student.UserAccount.Lname – @student.UserAccount.Email
+         @student.Fname @student.Lname – @student.Email
     </a>
 }
 

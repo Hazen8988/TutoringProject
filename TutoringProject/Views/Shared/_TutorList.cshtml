@@ -1,9 +1,9 @@
-﻿@model List<TutoringProject.Models.Tutor.Tutor>
+﻿@model List<TutoringProject.Models.UserAccount.UserAccount>
 
 @foreach (var tutor in Model)
 {
     <a class="dropdown-item" href="/Tutor/Details/@tutor.Id">
-         @tutor.UserAccount.Fname @tutor.UserAccount.Lname – @tutor.UserAccount.Email
+         @tutor.Fname @tutor.Lname – @tutor.Email
     </a>
 }
 

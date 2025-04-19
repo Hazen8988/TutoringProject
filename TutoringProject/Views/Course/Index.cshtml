@@ -1,0 +1,30 @@
+@model IEnumerable<TutoringProject.Models.Course>
+
+@{
+    ViewBag.Title = "Course List";
+}
+
+<h2>Course List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Id)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_CourseIndexItem", item)
+        }
+    </tbody>
+</table>
+
+<style>
+    table, tr, th, td {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+</style>

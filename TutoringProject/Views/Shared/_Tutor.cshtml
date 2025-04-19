@@ -1,13 +1,11 @@
-﻿@model TutoringProject.Models.Tutor.Tutor
+﻿@model TutoringProject.Models.UserAccount.UserAccount
 
 
 <tr>
     <td>@Model.Id</td>
-    <td>@Model.UserAccount.Fname</td>
-    <td>@Model.UserAccount.Lname</td>
-    <td>@Model.Delivery</td>
-    <td>@Model.Salary</td>
-    <td>@Model.UserAccount.Email</td>
+    <td>@Model.Fname</td>
+    <td>@Model.Lname</td>
+    <td>@Model.Email</td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = @Model.Id }) |
         @Html.ActionLink("Details", "Details", new { id = @Model.Id })

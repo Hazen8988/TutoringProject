@@ -1,0 +1,12 @@
+﻿@model TutoringProject.Models.Session.Session
+
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Time</td>
+    <td>@Model.Course.Name</td>
+    <td>@Model.IsOnline</td>
+    <td>@Model.Tutor.Fname @Model.Tutor.Lname</td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </td>
+</tr>

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TutoringProject.Models;
-using TutoringProject.Models.Student;
 
 
 namespace TutoringProject.Controllers
@@ -16,36 +15,10 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var students = db.Students.Include("UserAccount").ToList();
+                var students = db.UserAccounts
+                    .Where(u => u.Role == "Student")
+                    .ToList();
                 return View(students);
-            }
-        }
-
-        public ActionResult Edit(int id)
-        {
-            using (var db = new TutorContext()) 
-            {
-                var student = db.Students.Include("UserAccount").ToList().Find(s => s.Id == id);
-                if (student == null) 
-                { 
-                    return HttpNotFound();
-                }
-                return View(student);
-            }
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Student student)
-        {
-            using (var db = new TutorContext()) 
-            {
-                if (ModelState.IsValid) 
-                {
-                    db.Entry(student).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                return View(student);
             }
         }
 
@@ -53,7 +26,10 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var student = db.Students.Include("UserAccount").ToList().Find(s => s.Id == id);
+                var student = db.UserAccounts
+                    .Where(u => u.Role == "Student")
+                    .ToList()
+                    .Find(s => s.Id == id);
                 if (student == null)
                 {
                     return HttpNotFound();

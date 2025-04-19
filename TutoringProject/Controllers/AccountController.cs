@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using TutoringProject.Models;
-using TutoringProject.Models.Student;
-using TutoringProject.Models.Tutor;
 using TutoringProject.Models.UserAccount;
 using System.Diagnostics;
 using System.Web.Security;
@@ -15,13 +13,7 @@ namespace TutoringProject.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            var record = new UserRegistrationRecord
-            {
-                UserAccount = new UserAccount(),
-                Tutor = new Tutor(),
-                Student = new Student()
-            };
-            return View(record);
+            return View();
         }
 
         [HttpPost]
@@ -53,24 +45,6 @@ namespace TutoringProject.Controllers
 
                     // Add the new user account
                     context.UserAccounts.Add(record.UserAccount);
-                    context.SaveChanges();
-
-                    // Assign and save the role-specific data
-                    if (record.Role == "Tutor")
-                    {
-                        record.Tutor.Id = record.UserAccount.Id;
-                        context.Tutors.Add(record.Tutor);
-                    }
-                    else if (record.Role == "Student")
-                    {
-                        record.Student.Id = record.UserAccount.Id;
-                        context.Students.Add(record.Student);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("Role", "Invalid role selected");
-                        return View(record);
-                    }
 
                     context.SaveChanges();
                     TempData["RegistrationSuccess"] = "Registration successful!";
@@ -106,6 +80,9 @@ namespace TutoringProject.Controllers
                     Session["UserId"] = user.Id;
                     Session["Role"] = user.Role;
                     Session["Name"] = user.Fname + " " + user.Lname;
+
+                    FormsAuthentication.SetAuthCookie(userAccount.Email, false);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -119,7 +96,8 @@ namespace TutoringProject.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
-            Session.Clear();
+            Session.Abandon();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
     }

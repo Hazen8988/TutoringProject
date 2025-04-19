@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using TutoringProject.Models.Tutor;
 using TutoringProject.Models.Session;
-using TutoringProject.Models.Student;
 using TutoringProject.Models;
 using System.Data.Entity;
 
@@ -14,12 +12,12 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext())
             {
-                var tutors = db.Tutors
-                 .Include("UserAccount")
-                 .Where(t => t.UserAccount.Fname.Contains(searchTerm) ||
-                             t.UserAccount.Lname.Contains(searchTerm) ||
-                             t.UserAccount.Email.Contains(searchTerm))
-                 .ToList();
+                var tutors = db.UserAccounts
+                     .Where(u => u.Role == "Tutor")
+                     .Where(t => t.Fname.Contains(searchTerm) ||
+                                 t.Lname.Contains(searchTerm) ||
+                                 t.Email.Contains(searchTerm))
+                     .ToList();
 
                 return PartialView("~/Views/Shared/_SearchResult.cshtml", tutors);
             }
@@ -29,11 +27,11 @@ namespace TutoringProject.Controllers
         {
             using (var db = new TutorContext()) 
             {
-                var students = db.Students
-                    .Include("UserAccount")
-                    .Where(s => s.UserAccount.Fname.Contains(searchTerm) || 
-                                s.UserAccount.Lname.Contains(searchTerm) || 
-                                s.UserAccount.Email.Contains(searchTerm))
+                var students = db.UserAccounts
+                    .Where(u => u.Role == "Student")
+                    .Where(s => s.Fname.Contains(searchTerm) || 
+                                s.Lname.Contains(searchTerm) || 
+                                s.Email.Contains(searchTerm))
                     .ToList();
 
                 return PartialView("~/Views/Shared/_SearchResult.cshtml", students);
@@ -45,17 +43,13 @@ namespace TutoringProject.Controllers
             using (var db = new TutorContext()) 
             {
                 var sessions = db.Sessions
-                    .Include("Student")
-                    .Include("Tutor")
-                    .Include("Student.UserAccount")
                     .Include("Tutor.UserAccount")
-                    .Where(s => s.Subject.Contains(searchTerm))
+                    .Include("Course")
+                    .Where(s => s.Course.Name.Contains(searchTerm))
                     .ToList();
 
                 return PartialView("~/Views/Shared/_SearchResult.cshtml", sessions);
             }
         }
-
-
     }
 }

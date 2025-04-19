@@ -6,8 +6,17 @@
 
 <h2>Create New Session</h2>
 
+<p>Information:</p>
+<ul>
+    <li>Course: @ViewBag.Course.Name</li>
+    <li>Tutor Name: @ViewBag.Tutor.Fname @ViewBag.Tutor.Lname</li>
+</ul>
+
 @using (Html.BeginForm("Create", "Session", FormMethod.Post))
 {
+    @Html.Hidden("CourseId", (int)ViewBag.Course.Id)
+    @Html.Hidden("TutorId", (int)ViewBag.Tutor.Id)
+
     <div class="form-group">
         @Html.LabelFor(model => model.Time)
         @Html.TextBoxFor(model => model.Time, new { @class = "form-control", type = "datetime-local" })
@@ -15,25 +24,16 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Subject)
-        @Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Subject)
+        @Html.LabelFor(model => model.MaxParticipants)
+        @Html.TextBoxFor(model => model.MaxParticipants, new { @class = "form-control", type = "number", min = "1" })
+        @Html.ValidationMessageFor(model => model.MaxParticipants)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.StudentId)
-        @Html.DropDownListFor(model => model.StudentId, new SelectList(ViewBag.Students, "Id", "FnameLname"), "Select Student", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.StudentId)
+        @Html.LabelFor(model => model.IsOnline)
+        @Html.CheckBoxFor(model => model.IsOnline)
+        @Html.ValidationMessageFor(model => model.IsOnline)
     </div>
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.TutorId)
-        @Html.DropDownListFor(model => model.TutorId, new SelectList(ViewBag.Tutors, "Id", "FnameLname"), "Select Tutor", new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.TutorId)
-    </div>
-
-
 
     <button type="submit" class="btn btn-primary">Create</button>
 }

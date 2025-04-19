@@ -6,23 +6,19 @@
 
 <h2>Session List</h2>
 
-@if (Session["UserId"] != null && Session["Role"].Equals("Tutor"))
-{
-    <p>@Html.ActionLink("Create New", "Create")</p>
-}
-
 <table class="table">
     <tr>
         <th>@Html.DisplayNameFor(model => model.First().Id)</th>
         <th>@Html.DisplayNameFor(model => model.First().Time)</th>
-        <th>@Html.DisplayNameFor(model => model.First().Subject)</th>
-        <th>@Html.DisplayNameFor(model => model.First().Student)</th>
+        <th>@Html.DisplayNameFor(model => model.First().Course.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.First().IsOnline)</th>
+        <th>Tutor</th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        @Html.Partial("_Session", item)
+        @Html.Partial("_SessionIndexItem", item)
     }
 
 </table>

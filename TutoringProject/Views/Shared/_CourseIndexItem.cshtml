@@ -1,0 +1,10 @@
+﻿@model TutoringProject.Models.Course
+
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Name</td>
+    <td>@Model.Description</td>
+    <td>
+        @Html.ActionLink("Details", "Details", "Course", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </td>
+</tr>
