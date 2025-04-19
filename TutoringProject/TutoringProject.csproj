@@ -116,6 +116,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -132,8 +133,14 @@
     <Compile Include="Migrations\202504101831310_FixDateFormat.Designer.cs">
       <DependentUpon>202504101831310_FixDateFormat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504182317344_AddFilesUpload.cs" />
+    <Compile Include="Migrations\202504182317344_AddFilesUpload.Designer.cs">
+      <DependentUpon>202504182317344_AddFilesUpload.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SessionMaterial\SessionMaterial.cs" />
     <Compile Include="Models\Session\Session.cs" />
+    <Compile Include="Models\StudentSubmission\StudentSubmission.cs" />
     <Compile Include="Models\Student\Student.cs" />
     <Compile Include="Models\TutorContext.cs" />
     <Compile Include="Models\TutorRoleProvider.cs" />
@@ -248,13 +255,20 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UploadSubmission\StudentSubmissions\" />
+    <Folder Include="Uploads\SessionMaterials\" />
+    <Folder Include="Views\FileUpload\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202504101826508_InitialCreate.resx">
       <DependentUpon>202504101826508_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202504101831310_FixDateFormat.resx">
       <DependentUpon>202504101831310_FixDateFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504182317344_AddFilesUpload.resx">
+      <DependentUpon>202504182317344_AddFilesUpload.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

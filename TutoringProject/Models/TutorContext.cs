@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using TutoringProject.Models.Tutor;
+using TutoringProject.Models.StudentSubmission;
+using TutoringProject.Models.SessionMaterial;
 
 namespace TutoringProject.Models
 {
@@ -20,5 +22,8 @@ namespace TutoringProject.Models
         public DbSet<Student.Student> Students { get; set; }
 
         public DbSet<Session.Session> Sessions { get; set; }
+        public DbSet<SessionMaterial.SessionMaterial> SessionMaterials { get; set; }
+        public DbSet<StudentSubmission.StudentSubmission> StudentSubmissions { get; set; }
+
     }
 }

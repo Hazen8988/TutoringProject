@@ -30,10 +30,31 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.UserAccount.Email)
         </dd>
-
-     
     </dl>
 </div>
+@if (User.IsInRole("Student"))
+{
+    <h4>Upload Assignment</h4>
+
+    using (Html.BeginForm("UploadSubmission", "StudentSubmission", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="file">Select file:</label>
+            <input type="file" name="file" id="file" class="form-control" required />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Upload</button>
+    }
+
+    if (TempData["UploadSuccess"] != null)
+    {
+        <div class="alert alert-success mt-2">@TempData["UploadSuccess"]</div>
+    }
+    else if (TempData["UploadError"] != null)
+    {
+        <div class="alert alert-danger mt-2">@TempData["UploadError"]</div>
+    }
+}
 
 <p>
     @Html.ActionLink("Back to List", "Index")
