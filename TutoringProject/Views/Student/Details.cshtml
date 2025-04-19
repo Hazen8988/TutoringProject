@@ -54,7 +54,13 @@
     {
         <div class="alert alert-danger mt-2">@TempData["UploadError"]</div>
     }
+   
+
 }
+@{ Html.RenderAction("SubmissionGetUploadedFiles", "FileUpload"); }
+
+
+
 
 <p>
     @Html.ActionLink("Back to List", "Index")

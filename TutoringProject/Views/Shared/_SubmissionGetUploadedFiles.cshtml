@@ -1,0 +1,15 @@
+﻿@model IEnumerable<dynamic>
+
+@if (Model != null && Model.Any())
+            {
+                <h5>Uploaded Files</h5>
+                <ul class="list-group">
+                    @foreach (var file in Model)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @file.FileName 
+                        <a href="@Url.Action("SubmissionDownloadFile", "FileUpload", new { id = file.Id})" class="btn btn-sm btn-outline-primary">Download</a>
+                    </li>
+                }
+                </ul>
+            }

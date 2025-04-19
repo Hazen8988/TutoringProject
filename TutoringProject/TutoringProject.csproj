@@ -228,6 +228,8 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Shared\_CourseIndexItem.cshtml" />
     <Content Include="Views\Course\Details.cshtml" />
+    <Content Include="Views\Shared\_SubmissionGetUploadedFiles.cshtml" />
+    <Content Include="Views\Shared\_MaterialGetUploadedFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
