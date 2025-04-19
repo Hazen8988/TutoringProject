@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using TutoringProject.Models.Session;
 using TutoringProject.Models.UserAccount;
+using TutoringProject.Models.StudentSubmission;
+using TutoringProject.Models.SessionMaterial;
 
 namespace TutoringProject.Models
 {
@@ -21,6 +23,9 @@ namespace TutoringProject.Models
 
         public DbSet<Course> Courses { get; set; }
 
+        public DbSet<SessionMaterial.SessionMaterial> SessionMaterials { get; set; }
+        public DbSet<StudentSubmission.StudentSubmission> StudentSubmissions { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -34,6 +39,7 @@ namespace TutoringProject.Models
                     cs.MapRightKey("SessionId");
                     cs.ToTable("StudentSession");
                 });
+
 
             modelBuilder.Entity<Session.Session>()
                 .HasRequired(s => s.Tutor)

@@ -1,15 +1,14 @@
-﻿@using TutoringProject.Models.Tutor
-@using TutoringProject.Models.Student
-@using TutoringProject.Models.Session
+﻿@using TutoringProject.Models.Session
+@using TutoringProject.Models.UserAccount
 @model dynamic
 
-@if (Model is List<Tutor>)
+@if (Model is List<UserAccount>)
 {
-    @Html.Partial("~/Views/Shared/_TutorList.cshtml", Model as List<Tutor>)
+    @Html.Partial("~/Views/Shared/_TutorList.cshtml", Model as List<UserAccount>)
 }
-else if (Model is List<Student>)
+else if (Model is List<UserAccount>)
 {
-    @Html.Partial("~/Views/Shared/_StudentList.cshtml", Model as List<Student>)
+    @Html.Partial("~/Views/Shared/_StudentList.cshtml", Model as List<UserAccount>)
 }
 else if (Model is List<Session>)
 {
