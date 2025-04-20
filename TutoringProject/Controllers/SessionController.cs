@@ -20,6 +20,7 @@ namespace TutoringProject.Controllers
                 var sessions = db.Sessions
                     .Include(s => s.Course)
                     .Include(s => s.Tutor)
+                    .Include(s => s.Students)
                     .ToList();
                 return View(sessions);
             }
@@ -30,7 +31,7 @@ namespace TutoringProject.Controllers
         {
             int userId = (int)Session["UserId"];
 
-            using (var db = new TutorContext()) 
+            using (var db = new TutorContext())
             {
                 Course course = db.Courses.Find(id);
                 if (course == null)
@@ -89,7 +90,7 @@ namespace TutoringProject.Controllers
                         Id = s.Id,
                         FnameLname = s.Fname + " " + s.Lname
                     }).ToList();
-                
+
                 return View(session);
             }
         }
@@ -149,6 +150,64 @@ namespace TutoringProject.Controllers
                     return HttpNotFound();
                 }
                 return View(session);
+            }
+        }
+
+        [Authorize(Roles = "Student")]
+        [HttpPost]
+        public ActionResult JoinSession(int sessionId)
+        {
+            int userId = (int)Session["UserId"];
+            using (var db = new TutorContext())
+            {
+                var session = db.Sessions
+                    .Include(s => s.Students)
+                    .FirstOrDefault(s => s.Id == sessionId);
+                if (session == null)
+                {
+                    return HttpNotFound();
+                }
+
+                var student = db.UserAccounts.Find(userId);
+                if (student == null)
+                {
+                    return HttpNotFound();
+                }
+
+                if (!session.Students.Contains(student))
+                {
+                    session.Students.Add(student);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
+            }
+        }
+
+        [Authorize(Roles = "Student")]
+        [HttpPost]
+        public ActionResult LeaveSession(int sessionId)
+        {
+            int userId = (int)Session["UserId"];
+            using (var db = new TutorContext())
+            {
+                var session = db.Sessions
+                    .Include(s => s.Students)
+                    .FirstOrDefault(s => s.Id == sessionId);
+                if (session == null)
+                {
+                    return HttpNotFound();
+                }
+                var student = db.UserAccounts.Find(userId);
+                if (student == null)
+                {
+                    return HttpNotFound();
+                }
+                if (session.Students.Contains(student))
+                {
+                    session.Students.Remove(student);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
             }
         }
     }

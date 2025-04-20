@@ -37,6 +37,70 @@
         </dd>
     </dl>
 </div>
+
+@*List of students*@
+@if (Model.Students != null && Model.Students.Count > 0)
+{
+    <h4>Participants</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.Fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => student.Lname)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No participants yet.</div>
+}
+
+@if (User.IsInRole("Student"))
+{
+    <h4>Join Session</h4>
+    <p>Click the button below to join the session.</p>
+    if (Model.Students.Count > Model.MaxParticipants)
+    {
+        <div class="alert alert-danger">Session is full.</div>
+    }
+    else if (Model.Students.Select(s => s.Id).FirstOrDefault() == (int)Session["UserId"])
+    {
+        <div class="alert alert-info">You are already a participant in this session.</div>
+        using (Html.BeginForm("LeaveSession", "Session", FormMethod.Post))
+        {
+            @Html.Hidden("sessionId", Model.Id)
+            <button type="submit" class="btn btn-danger">Leave</button>
+        }
+    }
+    else
+    {
+        using (Html.BeginForm("JoinSession", "Session", FormMethod.Post))
+        {
+            @Html.Hidden("sessionId", Model.Id)
+            <button type="submit" class="btn btn-primary">Join</button>
+        }
+    }
+
+}
+
 @if (User.IsInRole("Tutor"))
 {
     <h4>Upload Session Material</h4>
